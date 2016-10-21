@@ -1,0 +1,21 @@
+{
+  "name": "bokor",
+  "version": "1.0.0",
+  "description": "server virtualization and mocking",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter nyan"
+  },
+  "keywords": [
+    "mock",
+    "virtulization",
+    "testing",
+    "ui"
+  ],
+  "author": "Jimmy Eisenhauer <james.eisenhauer@gmail.com> (https://github.com/jimmyeisenhauer)",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.1.2"
+  }
+}
