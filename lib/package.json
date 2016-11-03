@@ -3,7 +3,7 @@
   "description": "Bokor Virtulization Server & Cache",
   "version": "2.0.2",
   "author": "James Eisenhauer",
-  "repository": "http://stash.nikedev.com/users/jeisenha/repos/bokor/browse",
+  "repository": "https://github.com/Nike-Inc/bokor",
   "license": "UNLICENSED",
   "dependencies": {
     "colors": "~0.6.2",
