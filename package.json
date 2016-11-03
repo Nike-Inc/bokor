@@ -13,6 +13,7 @@
     "ui"
   ],
   "author": "Jimmy Eisenhauer <james.eisenhauer@nike.com> (https://github.com/jimmyeisenhauer)",
+  "repository": "https://github.com/Nike-Inc/bokor",
   "license": "Apache 2.0",
   "devDependencies": {
     "fs": "0.0.1-security",
