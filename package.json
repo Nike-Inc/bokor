@@ -1,16 +1,22 @@
 {
   "name": "bokor",
   "version": "1.0.0",
-  "description": "server virtualization and mocking",
+  "description": "Bokor is an easy to use Node.js Record and Playback Service Virtualization Mock Server",
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/.bin/jshint --config .jshintrc index.js lib test example  && ./node_modules/.bin/istanbul test ./node_modules/.bin/_mocha -- -R spec"
   },
   "keywords": [
     "mock",
+    "service",
     "virtulization",
     "testing",
-    "ui"
+    "ui",
+    "bokor",
+    "node",
+    "javascript",
+    "record",
+    "playback"
   ],
   "author": "Jimmy Eisenhauer <james.eisenhauer@nike.com> (https://github.com/jimmyeisenhauer)",
   "repository": "https://github.com/Nike-Inc/bokor",
