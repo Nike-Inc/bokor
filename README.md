@@ -1,3 +1,5 @@
+<img src="bokor_logo.png" />
+
 # Bokor
 
 Bokor is a simple, Record and Playback Mock Server written in Node.js, utilized for Service Virtualization.

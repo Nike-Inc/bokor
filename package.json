@@ -1,7 +1,7 @@
 {
   "name": "bokor",
-  "version": "1.0.0",
-  "description": "Bokor is an easy to use Node.js Record and Playback Service Virtualization Mock Server",
+  "version": "1.0.1",
+  "description": "Bokor is a simple, Record and Playback Mock Server written in Node.js, utilized for Service Virtualization.",
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/.bin/jshint --config .jshintrc index.js lib test examples  && ./node_modules/.bin/istanbul test ./node_modules/.bin/_mocha -- -R spec"
