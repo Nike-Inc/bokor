@@ -4,7 +4,7 @@ The changelog for BOKOR includes information about the each release including an
 
 
 ---
-## 1.0.1
+## 1.0.1 
 
 ### Release Notes
 #### Added
