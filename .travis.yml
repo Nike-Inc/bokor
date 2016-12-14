@@ -1,11 +1,15 @@
 language: node_js
-
 node_js:
-  - stable
-
+- stable
 install:
-  - npm install
-
+- npm install
 script:
-  - npm test --coverage
-  
+- npm test --coverage
+deploy:
+  provider: npm
+  email: james.eisenhauer@nike.com
+  api_key:
+    secure: GJT+F1M1avyW/jUQ6ymgkd7S+2SEaP/h2duyAa2lYibH89Y/Ay1H0yxd2+O3JEWo9MtAuIt0NvNGuLsZkMIVX8i6URfL4RfJ5/cZIs0cr2oez4p0GYeLBBHRMA3bzmL+kOST3anv5gBQjswKQUuH3mi+82GSV4qvuuVEuRnKRD/8dLk7njHAE3izfOVemhy7mzgvHvnIfhUKMM11U/TBI8Q3cFwa6tJHmIvvahrRY/HZxPO4Q+STzzWJi1tsAjgCuBLmj1wi+L7JAf1g2o7oPAptIASnd6e1qWpSDDkqephiMi+0mv0aIsJFAMXJ3M8pWs7xUWHl/6uIvQ72lfXNE3VJwCqavDbWOkGcGt2+FuX3xJFF7Q2y2SM9ddqLy1tmoIJh0BHiri1/RNKFrfeER5mDQo6aeZySY5DHbfByem3qJOm8KvjK5SuAo1IgfuSLqRD1ICZeOud4uJd5+mv8TjkpCKGJKtdh/Oh1Eubu28BL1kvafZW3bQd/fcHWB+nEC0nTiaev+dKqf26pmiyOHro+uSJKJe5DvVq2awOv0o8sdzRDZckISVZMUwXJlMQmkQFzrf4Nmw1reDnyBHmJvS/muDSc4iEA77rcB7Pd4bfJIvghuieoMMGslH9okUK8WxbtGP32fsabsCtb07xMTbC82D4r35iW4ISpPkA4jGk=
+  on:
+    tags: true
+    repo: Nike-Inc/bokor
