@@ -38,6 +38,7 @@
     "colors": "^1.1.2",
     "express": "^4.14.0",
     "http-proxy": "^1.15.2",
-    "levenshtein": "^1.0.5"
+    "levenshtein": "^1.0.5",
+    "moment": "^2.17.1"
   }
 }

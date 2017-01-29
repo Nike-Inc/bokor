@@ -15,10 +15,12 @@
 
 var serversProperties = require('./servers.properties');
 var filtersProperties = require('./filters.properties');
+var datetimesProperties = require('./datetimes.properties');
 
 var bokor = require('../../');
 
 bokor.start({
 servers : serversProperties,
-filters : filtersProperties
+filters : filtersProperties,
+datetimes : datetimesProperties
 });
