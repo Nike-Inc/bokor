@@ -6,6 +6,10 @@
 
 Bokor is a simple, Record and Playback Mock Server written in Node.js, utilized for Service Virtualization.
 
+Bokor is very similar to the many VCR-like tools out there today, but prides itself on its ease of use and speed to setup.  It can be utilized for any mocking needs, but was primarily developed for mocking back end service calls in automated UI testing.
+
+Bokor was developed and is in use at Nike since early 2016.  There, it is used to improve the speed, reliability and test coverage of the integration and user interface test suites for native mobile applications.
+
 - [Installation](#installation)
 - [Usage](#usage)
     - [Server Configuration](#server-configuration)
