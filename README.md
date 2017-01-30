@@ -17,6 +17,7 @@ Bokor was developed and is in use at Nike since early 2016.  There, it is used t
     - [Advanced Configuration](#advanced-configuration)
          - [Relative Date Time Objects](#relative-date-time-objects)
          - [Static Resources](#static-resources)
+         - [Admin Server](#admin-server)
          - [Port](#port)
 - [Data Fixtures](#data-fixtures)
     - [Data Bins](#data-bins)
@@ -176,6 +177,16 @@ bokor.start({
 servers : serversProperties,
 filters : filtersProperties,
 staticFileLocation: customFolder
+});
+```
+
+#### Admin Server
+By default Bokor runs an admin server on port 58080.  If you do not need this feature you can turn off the admin server by adjusting the server config.
+```javascript
+bokor.start({
+servers : serversProperties,
+filters : filtersProperties,
+admin: false
 });
 ```
 
