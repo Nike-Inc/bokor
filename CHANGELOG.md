@@ -4,9 +4,18 @@ The changelog for BOKOR includes information about the each release including an
 
 
 ---
-## 1.0.1 
+## 1.0.1
 
 ### Release Notes
 #### Added
 
 - I AM BORN!
+
+
+## 1.1.0
+
+### Release Notes
+#### Added
+
+- Relative Dates Time objects!  Ability to have dynamic mocked date time values.
+- Ability to turn off the admin server via configuration.

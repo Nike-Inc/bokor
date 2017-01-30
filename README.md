@@ -6,11 +6,19 @@
 
 Bokor is a simple, Record and Playback Mock Server written in Node.js, utilized for Service Virtualization.
 
+Bokor is very similar to the many VCR-like tools out there today, but prides itself on its ease of use and speed to setup.  It can be utilized for any mocking needs, but was primarily developed for mocking back end service calls in automated UI testing.
+
+Bokor was developed and is in use at Nike since early 2016.  There, it is used to improve the speed, reliability and test coverage of the integration and user interface test suites for native mobile applications.
+
 - [Installation](#installation)
 - [Usage](#usage)
     - [Server Configuration](#server-configuration)
     - [Filter Configuration](#filter-configuration)
     - [Advanced Configuration](#advanced-configuration)
+         - [Relative Date Time Objects](#relative-date-time-objects)
+         - [Static Resources](#static-resources)
+         - [Admin Server](#admin-server)
+         - [Port](#port)
 - [Data Fixtures](#data-fixtures)
     - [Data Bins](#data-bins)
     - [Fixture Filenames](#fixture-filenames)
@@ -125,6 +133,43 @@ bokor server rolled lucky 7777
 
 ### Advanced Configuration
 
+#### Relative Date Time Objects
+Often we find the need to have date time results relative from the current date time.  For example; "5 minutes from now" or "Exactly 3 days from now".  With Bokor you can manipulate your recorded date time values in any possible way you can imagine.
+
+##### Create `datetimes.properties` file
+First create a key name that is meaningful like: `NOW_DATETIME_UTC`.  Next utilizing the [Moment.JS library](http://momentjs.com/) create your javascript function that will manipulate the date time to your needs like: `moment().utc().format()`, making sure to escape any single quotes.
+
+```javascript
+var datetimes = {
+    datetime1: {
+        key: 'NOW_DATETIME_UTC',
+        value: 'moment().utc().format()',
+    },
+   datetime2: {
+        key: 'NOW_DATETIME_UTC_PLUS_10_MINUTES',
+        value: 'moment().utc().add(10, \'m\').format()',
+    }
+};
+module.exports = datetimes;
+```
+
+##### Add the date time configuration to the `server.js` file.
+```javascript
+var serversProperties = require('./servers.properties');
+var filtersProperties = require('./filters.properties');
+var datetimesProperties = require('./datetimes.properties');
+
+var bokor = require('bokor');
+
+bokor.start({
+servers : serversProperties,
+filters : filtersProperties,
+datetimes : datetimesProperties
+});
+```
+Once you have completed the configuration modify your recorded data fixtures, by replacing date time values with a the key values you created.  Bokor will dynamically create date time values the next time you request that data fixture.
+
+
 #### Static Resources
 By default Bokor serves any static resource in the `static_files` folder.  You can modify this folder name by adjusting the server config.
 ```javascript
@@ -132,6 +177,16 @@ bokor.start({
 servers : serversProperties,
 filters : filtersProperties,
 staticFileLocation: customFolder
+});
+```
+
+#### Admin Server
+By default Bokor runs an admin server on port 58080.  If you do not need this feature you can turn off the admin server by adjusting the server config.
+```javascript
+bokor.start({
+servers : serversProperties,
+filters : filtersProperties,
+admin: false
 });
 ```
 
