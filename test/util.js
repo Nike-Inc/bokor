@@ -56,13 +56,21 @@ describe('utils.js', function() {
      var text = substituteWithOpaqueKeys('A:<OPAQUE1>:B:<OPAQUE2>:C:realvalue1:D:realvalue2');
      text.should.equal('A:<OPAQUE1>:B:<OPAQUE2>:C:<OPAQUE1>:D:<OPAQUE2>');
    });
+
+   it('should substitute multiple real values with opaque keys', function () {
+     var valfn1 = function() {return 'realvalue1'; };
+     addSubstitution('<OPAQUE1>', valfn1);
+
+     var text = substituteWithOpaqueKeys('A:<OPAQUE1>:B:<OPAQUE1>:C:realvalue1:D:realvalue1');
+     text.should.equal('A:<OPAQUE1>:B:<OPAQUE1>:C:<OPAQUE1>:D:<OPAQUE1>');
+   });
  });
 
  describe('#substituteWithRealValues', function() {
    const substituteWithRealValues= sepiaUtil.substituteWithRealValues;
    const addSubstitution = sepiaUtil.addSubstitution;
 
-   it('should substitute opaque keys with opaque keys', function () {
+   it('should substitute opaque keys with real values', function () {
      var valfn1 = function() {return 'realvalue1'; };
      var valfn2 = function() {return 'realvalue2'; };
      addSubstitution('<OPAQUE1>', valfn1);
@@ -70,6 +78,14 @@ describe('utils.js', function() {
 
      var text = substituteWithRealValues('A:<OPAQUE1>:B:<OPAQUE2>:C:realvalue1:D:realvalue2');
      text.should.equal('A:realvalue1:B:realvalue2:C:realvalue1:D:realvalue2');
+   });
+
+   it('should substitute multiple instances of opaque keys with real values', function () {
+     var valfn1 = function() {return 'realvalue1'; };
+     addSubstitution('<OPAQUE1>', valfn1);
+
+     var text = substituteWithRealValues('A:<OPAQUE1>:B:<OPAQUE1>:C:realvalue1:D:realvalue1');
+     text.should.equal('A:realvalue1:B:realvalue1:C:realvalue1:D:realvalue1');
    });
  });
 
