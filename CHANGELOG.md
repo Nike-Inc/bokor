@@ -4,13 +4,15 @@ The changelog for BOKOR includes information about the each release including an
 
 
 ---
-## 1.0.1
+
+## 1.1.1
 
 ### Release Notes
-#### Added
+#### Fixed
 
-- I AM BORN!
+- Allow multiple values to be substituted from the same key
 
+---
 
 ## 1.1.0
 
@@ -19,3 +21,12 @@ The changelog for BOKOR includes information about the each release including an
 
 - Relative Dates Time objects!  Ability to have dynamic mocked date time values.
 - Ability to turn off the admin server via configuration.
+
+---
+
+## 1.0.1
+
+### Release Notes
+#### Added
+
+- I AM BORN!
