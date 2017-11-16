@@ -5,6 +5,15 @@ The changelog for BOKOR includes information about the each release including an
 
 ---
 
+## 1.2.0
+
+### Release Notes
+#### Added
+
+- Ability to enable mocking services with self-signed certs via configuration.
+
+---
+
 ## 1.1.1
 
 ### Release Notes
