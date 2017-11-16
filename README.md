@@ -200,6 +200,16 @@ port: 1234
 });
 ```
 
+#### Secure
+By default Bokor checks a services SSL cert and will fail if the cert is self-signed / invalid CA.  You can modify this behavior by adjusting the server config.
+```javascript
+bokor.start({
+servers : serversProperties,
+filters : filtersProperties,
+secure: false,
+});
+```
+
 ## Data Fixtures
 
 ### Data Bins
