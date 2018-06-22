@@ -18,6 +18,9 @@
     "record",
     "playback"
   ],
+  "bin": {
+    "bokor": "bin/bokor"
+  },
   "author": "Jimmy Eisenhauer <james.eisenhauer@nike.com> (https://github.com/jimmyeisenhauer)",
   "repository": "https://github.com/Nike-Inc/bokor",
   "license": "Apache-2.0",
@@ -39,6 +42,7 @@
     "express": "^4.14.0",
     "http-proxy": "^1.15.2",
     "levenshtein": "^1.0.5",
-    "moment": "^2.17.1"
+    "moment": "^2.17.1",
+    "node-getopt": "^0.3.2"
   }
 }

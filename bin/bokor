@@ -1,0 +1,24 @@
+#!/usr/bin/env node
+const getOpt = require('node-getopt');
+const bokor = require('../index.js');
+const path = require('path');
+
+const cli = getOpt.create([
+  ['p', 'port=NUM', 'port of the bokor server [7777]'],
+  ['f', 'filters=PATH', 'file exporting filters.properties'],
+  ['s', 'servers=PATH', 'file exporting servers.properties'],
+  ['d', 'datetimes=PATH', 'file exporting datetimes.properties'],
+]).bindHelp()
+  .parseSystem();
+
+const options = cli.options;
+const cwd = process.cwd();
+
+const serversPath = path.resolve(cwd, options.servers || 'servers.properties');
+const filtersPath = path.resolve(cwd, options.filters || 'filters.properties');
+
+options.servers = require(serversPath);
+options.filters = require(filtersPath);
+
+bokor.start(options);
+
