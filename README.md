@@ -19,6 +19,7 @@ Bokor was developed and is in use at Nike since early 2016.  There, it is used t
          - [Static Resources](#static-resources)
          - [Admin Server](#admin-server)
          - [Port](#port)
+    - [Command Line](#command-line)
 - [Data Fixtures](#data-fixtures)
     - [Data Bins](#data-bins)
     - [Fixture Filenames](#fixture-filenames)
@@ -130,6 +131,23 @@ $ node server.js
 bokor server rolled lucky 7777
 ```
 
+### Command Line
+Bokor can be run through the command line using the `bokor` command.
+
+```
+npm i -g bokor
+
+$ bokor --help                                                                    ⬡ 8.9.1 [±feature/cli ●●]
+Usage:
+  node bokor [OPTION]
+
+  Options:
+    -p, --port      port of the bokor server [7777]
+    -f, --filters   file exporting filters.properties
+    -s, --servers   file exporting servers.properties
+    -d, --datetimes file exporting datetimes.properties
+    -h, --help      display this help
+```
 
 ### Advanced Configuration
 
