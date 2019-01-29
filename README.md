@@ -308,11 +308,11 @@ $ node server.js
 
 Record a response
 ```bash
-$ curl http://localhost:7777/users/jimmmyeisenhauer
+$ curl http://localhost:7777/users/jimmyeisenhauer
 ```
 Playback the response (notice the improved response time)
 ```bash
-$ curl http://localhost:7777/users/jimmmyeisenhauer
+$ curl http://localhost:7777/users/jimmyeisenhauer
 ```
 
 
