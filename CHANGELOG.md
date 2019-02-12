@@ -4,6 +4,24 @@ The changelog for BOKOR includes information about the each release including an
 
 
 ---
+## 1.3.2
+
+### Release Notes
+#### Added
+
+- Updated dependencies for security
+
+---
+## 1.3.1
+
+### Release Notes
+#### Added
+
+- Added command line interface.
+- Return server as promise.
+- Updated dependencies for security
+
+---
 
 ## 1.2.0
 
