@@ -28,7 +28,7 @@
     "fs": "0.0.1-security",
     "istanbul": "^0.4.5",
     "jshint": "^2.10.1",
-    "lodash": "^4.16.4",
+    "lodash": "^4.17.11",
     "mocha": "^5.2.0",
     "path": "^0.12.7",
     "request": "^2.88.0",
