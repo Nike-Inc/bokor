@@ -1,11 +1,6 @@
 # This is a heavily modified version of sepia for bokor
 # Thanks linkedin for the inspiration and code!
 
-
-
-
-
-
 # sepia - the way things used to be
 
 Sepia is a VCR-like module for node.js that records HTTP interactions, then
