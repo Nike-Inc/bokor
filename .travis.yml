@@ -4,7 +4,7 @@ node_js:
 install:
 - npm install
 script:
-- npm test --coverage
+- npm run coverage
 deploy:
   provider: npm
   email: james.eisenhauer@nike.com
