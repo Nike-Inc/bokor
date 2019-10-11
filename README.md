@@ -287,13 +287,16 @@ bokorServer/
 ```
 
 ## Logs
-`====[ cache miss ]====`
+Bokor uses [Bunyan](https://github.com/trentm/node-bunyan) for logging.  Bunyan is a simple and fast JSON logging library.
+Bunyan has many features.  One of them allows pretty-printing of the log.  We show this feature in the below [Demo From Source](#demo-from-source)
 
-❤️ If the request does not find a prerecorded response it will log cache miss in the color red.
+`(cache=miss)`
 
-`====[ cache hit ]====`
+❤️ If the request does not find a prerecorded response it will log cache miss.
 
-💚 If the request finds a prerecorded response it will log cache hit in the color green.
+`(cache=hit)`
+
+💚 If the request finds a prerecorded response it will log cache hit.
 
 ## Demo from Source
 Follow the below steps to run the Bokor Demo.
@@ -303,7 +306,7 @@ $ git clone https://github.com/Nike-Inc/bokor.git
 $ cd bokor
 $ npm install
 $ cd examples/source_example/
-$ node server.js
+$ node server.js | ../../node_modules/.bin/bunyan
 ```
 
 Record a response
@@ -320,20 +323,20 @@ $ curl http://localhost:7777/users/jimmyeisenhauer
 ## Tests
 
 ```
-$ npm test
+$ npm run coverage
 ```
 
 ## FAQ
 ### Where did the name Bokor come from?
 It is a long story, but one of my favorite quotes is:
 
-#####“any sufficiently advanced technology is indistinguishable from magic.”
+##### “any sufficiently advanced technology is indistinguishable from magic.”
 
 -arthur c. clarke
 
 So of course I penned a similar quote around test automation.
 
-#####“software tests that unexplainably pass or fail are indistinguishable from voodoo.”
+##### “software tests that unexplainably pass or fail are indistinguishable from voodoo.”
 -james r. eisenhauer
 
  And a Bokor is a voodoo sorcerer for hire who are said to serve the loa 'with both hands', practicing for both good and evil.
