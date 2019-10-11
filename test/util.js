@@ -18,16 +18,16 @@ var sinon = require('sinon');
 var _ = require('lodash');
 var path = require('path');
 
-var sepiaUtil = require('../lib/sepia/src/util');
+var util = require('../lib/sepia/src/util');
 var fs = require('fs');
 
-describe('utils.js', function() {
+describe('util.js', function() {
   beforeEach(function() {
-    sepiaUtil.reset();
+    util.reset();
   });
 
   describe('#addSubstitution', function() {
-   const addSubstitution = sepiaUtil.addSubstitution;
+   const addSubstitution = util.addSubstitution;
 
    it('should store a list of substitutions', function() {
      var valfn1 = function() { return 'realvalue1'; };
@@ -35,7 +35,7 @@ describe('utils.js', function() {
      addSubstitution('<OPAQUE1>', valfn1);
      addSubstitution('<OPAQUE2>', valfn2);
 
-     var substitutions = sepiaUtil.internal.globalOptions.substitutions;
+     var substitutions = util.internal.globalOptions.substitutions;
      substitutions[0].opaqueKey.should.equal('<OPAQUE1>');
      substitutions[0].actualValueFn().should.equal('realvalue1');
      substitutions[1].opaqueKey.should.equal('<OPAQUE2>');
@@ -44,8 +44,8 @@ describe('utils.js', function() {
  });
 
  describe('#substituteWithOpaqueKeys', function() {
-   const substituteWithOpaqueKeys = sepiaUtil.substituteWithOpaqueKeys;
-   const addSubstitution = sepiaUtil.addSubstitution;
+   const substituteWithOpaqueKeys = util.substituteWithOpaqueKeys;
+   const addSubstitution = util.addSubstitution;
 
    it('should substitute real values with opaque keys', function () {
      var valfn1 = function() {return 'realvalue1'; };
@@ -67,8 +67,8 @@ describe('utils.js', function() {
  });
 
  describe('#substituteWithRealValues', function() {
-   const substituteWithRealValues= sepiaUtil.substituteWithRealValues;
-   const addSubstitution = sepiaUtil.addSubstitution;
+   const substituteWithRealValues= util.substituteWithRealValues;
+   const addSubstitution = util.addSubstitution;
 
    it('should substitute opaque keys with real values', function () {
      var valfn1 = function() {return 'realvalue1'; };
@@ -90,7 +90,7 @@ describe('utils.js', function() {
  });
 
   describe('#addFilter', function() {
-    const addFilter = sepiaUtil.addFilter;
+    const addFilter = util.addFilter;
 
     it('retains all recognized properties', function() {
       addFilter({
@@ -105,7 +105,7 @@ describe('utils.js', function() {
         global: true
       });
 
-      var filters = sepiaUtil.internal.globalOptions.filenameFilters;
+      var filters = util.internal.globalOptions.filenameFilters;
       filters[0].url.source.should.equal('my-regex');
       filters[0].forceLive.should.equal(true);
       filters[0].global.should.equal(true);
@@ -119,7 +119,7 @@ describe('utils.js', function() {
         invalid: 'invalid-property'
       });
 
-      var filters = sepiaUtil.internal.globalOptions.filenameFilters;
+      var filters = util.internal.globalOptions.filenameFilters;
       filters[0].url.source.should.equal('filter-with-invalid-property');
       filters[0].should.have.keys(
         'url',
@@ -133,7 +133,7 @@ describe('utils.js', function() {
     it('fills in defaults for missing properties', function() {
       addFilter({});
 
-      var filters = sepiaUtil.internal.globalOptions.filenameFilters;
+      var filters = util.internal.globalOptions.filenameFilters;
       filters[0].url.source.should.equal('.*');
       filters[0].forceLive.should.equal(false);
       filters[0].global.should.equal(false);
@@ -143,7 +143,7 @@ describe('utils.js', function() {
   });
 
   describe('#mkdirpSync', function() {
-    const mkdirpSync = sepiaUtil.internal.mkdirpSync;
+    const mkdirpSync = util.internal.mkdirpSync;
 
     beforeEach(function() {
       sinon.stub(fs, 'mkdirSync'); // mkdirSync becomes a noop
@@ -169,7 +169,7 @@ describe('utils.js', function() {
   });
 
   describe('#filterByWhitelist', function() {
-    const filterByWhitelist = sepiaUtil.internal.filterByWhitelist;
+    const filterByWhitelist = util.internal.filterByWhitelist;
     const original = ['a', 'b', 'c'];
 
     it('does not filter if the whitelist is empty', function() {
@@ -184,7 +184,7 @@ describe('utils.js', function() {
   });
 
   describe('#removeInternalHeaders', function() {
-    const removeInternalHeaders = sepiaUtil.removeInternalHeaders;
+    const removeInternalHeaders = util.removeInternalHeaders;
 
     it('returns undefined if the input is undefined', function() {
       var filtered = removeInternalHeaders();
@@ -219,19 +219,19 @@ describe('utils.js', function() {
   });
 
   describe('#usesGlobalFixtures', function() {
-    const usesGlobalFixtures = sepiaUtil.internal.usesGlobalFixtures;
+    const usesGlobalFixtures = util.internal.usesGlobalFixtures;
 
     it('returns false if there are no filters', function() {
       usesGlobalFixtures('my-url').should.equal(false);
     });
 
     it('returns false if there are no matching filters', function() {
-      sepiaUtil.addFilter({
+      util.addFilter({
         url: /other-url/,
         global: true
       });
 
-      sepiaUtil.addFilter({
+      util.addFilter({
         url: /another-url/,
         global: true
       });
@@ -240,24 +240,24 @@ describe('utils.js', function() {
     });
 
     it('returns false if no matching filters specify global', function() {
-      sepiaUtil.addFilter({ url: /my/ });
-      sepiaUtil.addFilter({ url: /url/ });
+      util.addFilter({ url: /my/ });
+      util.addFilter({ url: /url/ });
 
       usesGlobalFixtures('my-url').should.equal(false);
     });
 
     it('returns true if any matching filter specifies global', function() {
-      sepiaUtil.addFilter({
+      util.addFilter({
         url: /my/,
         global: false
       });
 
-      sepiaUtil.addFilter({
+      util.addFilter({
         url: /url/,
         global: true
       });
 
-      sepiaUtil.addFilter({
+      util.addFilter({
         url: /my-url/,
         global: false
       });
@@ -267,10 +267,10 @@ describe('utils.js', function() {
   });
 
   describe('#applyMatchingFilters', function() {
-    const applyMatchingFilters = sepiaUtil.internal.applyMatchingFilters;
+    const applyMatchingFilters = util.internal.applyMatchingFilters;
 
     function addTestFilter(pattern) {
-      sepiaUtil.addFilter({
+      util.addFilter({
         url: new RegExp(pattern),
         urlFilter: function(url) {
           return pattern + '-url-filter: ' + url;
@@ -307,12 +307,12 @@ describe('utils.js', function() {
 
     it('applies multiple filters only if the original url matches',
       function() {
-        sepiaUtil.addFilter({
+        util.addFilter({
           url: /a/,
           urlFilter: function() { return 'b'; }
         });
 
-        sepiaUtil.addFilter({
+        util.addFilter({
           url: /b/,
           urlFilter: function() { return 'c'; }
         });
@@ -334,7 +334,7 @@ describe('utils.js', function() {
   });
 
   describe('#touchOnHit', function() {
-    const touchOnHit = sepiaUtil.internal.touchOnHit;
+    const touchOnHit = util.internal.touchOnHit;
 
     beforeEach(function() {
       sinon.stub(Date, 'now').returns('now');
@@ -365,7 +365,7 @@ describe('utils.js', function() {
     });
 
     it('does nothing if not configured touch on hits', function() {
-      sepiaUtil.configure({ touchHits: false });
+      util.configure({ touchHits: false });
       sinon.stub(fs, 'existsSync').returns(true);
 
       touchOnHit('my-filename');
@@ -375,7 +375,7 @@ describe('utils.js', function() {
   });
 
   describe('#log', function() {
-    const log = sepiaUtil.internal.log;
+    const log = util.internal.log;
 
     beforeEach(function() {
       sinon.stub(console, 'log'); // console.log becomes a noop
@@ -386,7 +386,7 @@ describe('utils.js', function() {
     });
 
     it('logs the given message in the given color', function() {
-      sepiaUtil.configure({ verbose: true });
+      util.configure({ verbose: true });
 
       log('\033[31m', ['arg1', 'arg2']);
       console.log.calledWithExactly('\033[31m', 'arg1', 'arg2', '\033[0m')
@@ -394,7 +394,7 @@ describe('utils.js', function() {
     });
 
     it('does not log anything if in non-verbose mode', function() {
-      sepiaUtil.configure({ verbose: false });
+      util.configure({ verbose: false });
 
       log('\033[31m', 'arg1', 'arg2');
       console.log.called.should.equal(false);
@@ -402,7 +402,7 @@ describe('utils.js', function() {
   });
 
   describe('#logFixtureStatus', function() {
-    const logFixtureStatus = sepiaUtil.internal.logFixtureStatus;
+    const logFixtureStatus = util.internal.logFixtureStatus;
 
     beforeEach(function() {
       sinon.stub(console, 'log'); // console.log becomes a noop
@@ -414,7 +414,7 @@ describe('utils.js', function() {
     });
 
     it('logs a cache hit if the fixture exists', function() {
-      sepiaUtil.configure({ verbose: true });
+      util.configure({ verbose: true });
       sinon.stub(fs, 'existsSync').returns(false);
       fs.existsSync.withArgs('my-filename.headers').returns(true);
 
@@ -427,7 +427,7 @@ describe('utils.js', function() {
     });
 
     it('logs a cache miss if the fixture does not exist', function() {
-      sepiaUtil.configure({ verbose: true });
+      util.configure({ verbose: true });
       sinon.stub(fs, 'existsSync').returns(true);
       fs.existsSync.withArgs('my-filename.headers').returns(false);
 
@@ -440,7 +440,7 @@ describe('utils.js', function() {
     });
 
     it('does not log anything if in non-verbose mode', function() {
-      sepiaUtil.configure({ verbose: false });
+      util.configure({ verbose: false });
       sinon.stub(fs, 'existsSync').returns(true);
 
       logFixtureStatus('filename', 'my-hash-body');
@@ -450,7 +450,7 @@ describe('utils.js', function() {
   });
 
   describe('#logFixtureDebugStatus', function() {
-    const logFixtureDebugStatus = sepiaUtil.internal.logFixtureDebugStatus;
+    const logFixtureDebugStatus = util.internal.logFixtureDebugStatus;
 
     beforeEach(function() {
       sinon.stub(console, 'log'); // console.log becomes a noop
@@ -462,7 +462,7 @@ describe('utils.js', function() {
     });
 
     it('does not log anything if in non-verbose mode', function() {
-      sepiaUtil.configure({ verbose: false });
+      util.configure({ verbose: false });
       sinon.stub(fs, 'existsSync').returns(true);
 
       logFixtureDebugStatus('my-missing-filename', 'my-best-matching-fixture',
@@ -472,7 +472,7 @@ describe('utils.js', function() {
     });
 
     it('logs a best matching fixture when verbose mode is true', function() {
-      sepiaUtil.configure({ verbose: true });
+      util.configure({ verbose: true });
       sinon.stub(fs, 'existsSync').returns(true);
       fs.existsSync.withArgs('my-filename.headers').returns(false);
 
@@ -488,7 +488,7 @@ describe('utils.js', function() {
   });
 
   describe('#parseCookiesNames', function() {
-    const parseCookiesNames = sepiaUtil.internal.parseCookiesNames;
+    const parseCookiesNames = util.internal.parseCookiesNames;
 
     it('returns an empty list when there are no cookies', function() {
       parseCookiesNames().should.eql([]);
@@ -515,7 +515,7 @@ describe('utils.js', function() {
     });
 
     it('filters by the whitelist if there is one', function() {
-      sepiaUtil.configure({
+      util.configure({
         cookieWhitelist: ['a', 'b']
       });
 
@@ -524,7 +524,7 @@ describe('utils.js', function() {
   });
 
   describe('#parseHeaderNames', function() {
-    const parseHeaderNames = sepiaUtil.internal.parseHeaderNames;
+    const parseHeaderNames = util.internal.parseHeaderNames;
 
     it('returns an empty list when there are no headers', function() {
       parseHeaderNames().should.eql([]);
@@ -558,7 +558,7 @@ describe('utils.js', function() {
     });
 
     it('filters by the whitelist if there is one', function() {
-      sepiaUtil.configure({
+      util.configure({
         headerWhitelist: ['a', 'b']
       });
 
@@ -579,7 +579,7 @@ describe('utils.js', function() {
   });
 
   describe('#gatherFilenameHashParts', function() {
-    const gatherFilenameHashParts = sepiaUtil.internal.gatherFilenameHashParts;
+    const gatherFilenameHashParts = util.internal.gatherFilenameHashParts;
 
     const headers = {
       header1: 'value1',
@@ -588,7 +588,7 @@ describe('utils.js', function() {
     };
 
     it('gathers all non-header parts if not including headers', function() {
-      sepiaUtil.configure({
+      util.configure({
         includeHeaderNames: false,
         includeCookieNames: false
       });
@@ -606,7 +606,7 @@ describe('utils.js', function() {
     });
 
     it('includes header names if requested', function() {
-      sepiaUtil.configure({
+      util.configure({
         includeHeaderNames: true,
         includeCookieNames: false
       });
@@ -624,7 +624,7 @@ describe('utils.js', function() {
     });
 
     it('includes cookie names if requested', function() {
-      sepiaUtil.configure({
+      util.configure({
         includeHeaderNames: false,
         includeCookieNames: true
       });
@@ -642,7 +642,7 @@ describe('utils.js', function() {
     });
 
     it('applies all filtering', function() {
-      sepiaUtil.addFilter({
+      util.addFilter({
         urlFilter: function(url) {
           return 'url-filtered: ' + url;
         },
@@ -687,7 +687,7 @@ describe('utils.js', function() {
 
   describe('#constructAndCreateFixtureFolder', function() {
     const constructAndCreateFixtureFolder =
-      sepiaUtil.internal.constructAndCreateFixtureFolder;
+      util.internal.constructAndCreateFixtureFolder;
 
     beforeEach(function() {
       sinon.stub(fs, 'mkdirSync'); // mkdirSync becomes a noop
@@ -700,8 +700,8 @@ describe('utils.js', function() {
     });
 
     it('constructs a folder from all necessary information', function() {
-      sepiaUtil.setFixtureDir('/global/fixture/dir');
-      sepiaUtil.setTestOptions({ testName: 'test_name' });
+      util.setFixtureDir('/global/fixture/dir');
+      util.setTestOptions({ testName: 'test_name' });
 
       var folder = constructAndCreateFixtureFolder('https://api.example.com/v1/test', {
       });
@@ -710,7 +710,7 @@ describe('utils.js', function() {
     });
 
     it('uses the "x-bokor-test-name" header as the test name', function() {
-      sepiaUtil.setFixtureDir('/global/fixture/dir');
+      util.setFixtureDir('/global/fixture/dir');
       // don't set the test name globally
 
       var folder = constructAndCreateFixtureFolder('https://api.example.com/v1/test', {
@@ -721,8 +721,8 @@ describe('utils.js', function() {
     });
 
     it('favors the "x-bokor-test-name" header as the test name', function() {
-      sepiaUtil.setFixtureDir('/global/fixture/dir');
-      sepiaUtil.setTestOptions({ testName: 'global/test/name' });
+      util.setFixtureDir('/global/fixture/dir');
+      util.setTestOptions({ testName: 'global/test/name' });
 
       var folder = constructAndCreateFixtureFolder('https://api.example.com/v1/test', {
         'x-bokor-test-name': 'test_name'
@@ -732,10 +732,10 @@ describe('utils.js', function() {
     });
 
     it('ignores the test name if it should use global fixtures', function() {
-      sepiaUtil.setFixtureDir('/global/fixture/dir');
-      sepiaUtil.setTestOptions({ testName: 'test_name' });
+      util.setFixtureDir('/global/fixture/dir');
+      util.setTestOptions({ testName: 'test_name' });
 
-      sepiaUtil.addFilter({
+      util.addFilter({
         url: /api.example.com/,
         global: true
       });
@@ -747,7 +747,7 @@ describe('utils.js', function() {
     });
 
     it('gracefully handles no test name', function() {
-      sepiaUtil.setFixtureDir('/global/fixture/dir');
+      util.setFixtureDir('/global/fixture/dir');
 
       var folder = constructAndCreateFixtureFolder('https://api.example.com/v1/test', {
       });
@@ -756,8 +756,8 @@ describe('utils.js', function() {
     });
 
     it('creates the constructed folder', function() {
-      sepiaUtil.setFixtureDir('global/fixture/dir');
-      sepiaUtil.setTestOptions({ testName: 'test_name' });
+      util.setFixtureDir('global/fixture/dir');
+      util.setTestOptions({ testName: 'test_name' });
 
       var folder = constructAndCreateFixtureFolder('https://api.example.com/v1/test', {
       });
@@ -769,7 +769,7 @@ describe('utils.js', function() {
   describe('#constructFilename', function() {
     // The fixture filenames in these tests are computed by hand for the
     // purposes of verification.
-    const constructFilename = sepiaUtil.constructFilename;
+    const constructFilename = util.constructFilename;
 
     beforeEach(function() {
       sinon.stub(fs, 'mkdirSync'); // mkdirSync becomes a noop
@@ -785,8 +785,8 @@ describe('utils.js', function() {
 
 
     it('constructs using all the available information', function() {
-      sepiaUtil.setFixtureDir('/global/fixture/dir');
-      sepiaUtil.setTestOptions({ testName: 'test_name' });
+      util.setFixtureDir('/global/fixture/dir');
+      util.setTestOptions({ testName: 'test_name' });
 
       var filename = constructFilename('get', 'https://api.example.com/v1/test', 'my-body', {
         header1: 'value1',
@@ -798,7 +798,7 @@ describe('utils.js', function() {
   });
 
   describe('#urlFromHttpRequestOptions', function() {
-    const urlFromHttpRequestOptions = sepiaUtil.urlFromHttpRequestOptions;
+    const urlFromHttpRequestOptions = util.urlFromHttpRequestOptions;
 
     it('returns a formatted url based on the options', function() {
       urlFromHttpRequestOptions(
@@ -834,19 +834,19 @@ describe('utils.js', function() {
   });
 
   describe('#shouldForceLive', function() {
-    const shouldForceLive = sepiaUtil.shouldForceLive;
+    const shouldForceLive = util.shouldForceLive;
 
     it('returns false if there are no filters', function() {
       shouldForceLive('my-url').should.equal(false);
     });
 
     it('returns false if there are no matching filters', function() {
-      sepiaUtil.addFilter({
+      util.addFilter({
         url: /other-url/,
         forceLive: true
       });
 
-      sepiaUtil.addFilter({
+      util.addFilter({
         url: /another-url/,
         forceLive: true
       });
@@ -855,24 +855,24 @@ describe('utils.js', function() {
     });
 
     it('returns false if no matching filters specify forceLive', function() {
-      sepiaUtil.addFilter({ url: /my/ });
-      sepiaUtil.addFilter({ url: /url/ });
+      util.addFilter({ url: /my/ });
+      util.addFilter({ url: /url/ });
 
       shouldForceLive('my-url').should.equal(false);
     });
 
     it('returns true if any matching filter specifies forceLive', function() {
-      sepiaUtil.addFilter({
+      util.addFilter({
         url: /my/,
         forceLive: false
       });
 
-      sepiaUtil.addFilter({
+      util.addFilter({
         url: /url/,
         forceLive: true
       });
 
-      sepiaUtil.addFilter({
+      util.addFilter({
         url: /my-url/,
         forceLive: false
       });
@@ -915,7 +915,7 @@ describe('utils.js', function() {
         .returns(RequestTwoFileData);
       fs.readdirSync.returns(filesArr);
 
-      var fixture = sepiaUtil.findTheBestMatchingFixture(missingFile);
+      var fixture = util.findTheBestMatchingFixture(missingFile);
       fixture.should.containEql('requestTwo.request');
     });
 
@@ -946,7 +946,7 @@ describe('utils.js', function() {
         .returns(RequestTwoFileData);
       fs.readdirSync.returns(filesArr);
 
-      var fixture = sepiaUtil.findTheBestMatchingFixture(missingFile);
+      var fixture = util.findTheBestMatchingFixture(missingFile);
       fixture.should.containEql('requestOne.request');
     });
 
@@ -977,7 +977,7 @@ describe('utils.js', function() {
         .returns(RequestTwoFileData);
       fs.readdirSync.returns(filesArr);
 
-      var fixture = sepiaUtil.findTheBestMatchingFixture(missingFile);
+      var fixture = util.findTheBestMatchingFixture(missingFile);
       should.not.exist(fixture);
     });
 
