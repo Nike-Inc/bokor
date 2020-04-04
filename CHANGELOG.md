@@ -3,6 +3,15 @@
 The changelog for BOKOR includes information about the each release including any update notes, release notes as well as bug fixes, updates to existing features and new features.
 
 ---
+## 2.1.0
+
+### Release Notes
+#### Added
+
+- Update variable definition  - thanks! [Kwang-in (Dennis) Jung](https://github.com/djKooks)
+- Updated dependencies for security
+
+---
 ## 2.0.0
 
 ### Release Notes
@@ -19,7 +28,7 @@ The changelog for BOKOR includes information about the each release including an
 #### Added
 
 - Updated dependencies for security
-- Clean up demo code
+- Clean up demo code - thanks! [Ben Williams](https://github.com/desertblade)
 
 ---
 ## 1.3.2
@@ -35,8 +44,8 @@ The changelog for BOKOR includes information about the each release including an
 ### Release Notes
 #### Added
 
-- Added command line interface.
-- Return server as promise.
+- Added command line interface. - thanks! [Erik Sutherland](https://github.com/MrRacoon)
+- Return server as promise. - thanks! [Erik Sutherland](https://github.com/MrRacoon)
 - Updated dependencies for security
 
 ---
@@ -46,7 +55,7 @@ The changelog for BOKOR includes information about the each release including an
 ### Release Notes
 #### Added
 
-- Ability to enable mocking services with self-signed certs via configuration.
+- Ability to enable mocking services with self-signed certs via configuration. - thanks! [Austin Corso](https://github.com/austinmcorso)
 
 ---
 
@@ -55,7 +64,7 @@ The changelog for BOKOR includes information about the each release including an
 ### Release Notes
 #### Fixed
 
-- Allow multiple values to be substituted from the same key
+- Allow multiple values to be substituted from the same key thanks! [Tony Gaskell](https://github.com/thgaskell)
 
 ---
 

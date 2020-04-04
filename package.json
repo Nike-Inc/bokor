@@ -1,6 +1,6 @@
 {
   "name": "bokor",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Bokor is a simple, Record and Playback Mock Server written in Node.js, utilized for Service Virtualization.",
   "main": "index.js",
   "scripts": {
@@ -27,12 +27,12 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "fs": "0.0.1-security",
-    "jshint": "^2.10.1",
+    "jshint": "^2.11.0",
     "lodash": "^4.17.15",
-    "mocha": "^5.2.0",
-    "nyc": "^14.1.1",
+    "mocha": "^6.2.0",
+    "nyc": "^15.0.0",
     "path": "^0.12.7",
-    "request": "^2.88.0",
+    "request": "^2.88.2",
     "should": "^11.1.1",
     "sinon": "^1.17.6",
     "step": "0.0.6",
@@ -40,11 +40,11 @@
   },
   "dependencies": {
     "bunyan": "^1.8.12",
-    "colors": "^1.1.2",
-    "express": "^4.14.0",
-    "http-proxy": "^1.15.2",
+    "colors": "^1.4.0",
+    "express": "^4.17.1",
+    "http-proxy": "^1.18.0",
     "levenshtein": "^1.0.5",
-    "moment": "^2.17.1",
+    "moment": "^2.24.0",
     "node-getopt": "^0.3.2"
   }
 }
