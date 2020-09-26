@@ -3,6 +3,14 @@
 The changelog for BOKOR includes information about the each release including any update notes, release notes as well as bug fixes, updates to existing features and new features.
 
 ---
+## 2.2.0
+
+### Release Notes
+#### Added
+
+- Fixed error due to http-proxy update
+
+---
 ## 2.1.0
 
 ### Release Notes
