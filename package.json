@@ -1,6 +1,6 @@
 {
   "name": "bokor",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Bokor is a simple, Record and Playback Mock Server written in Node.js, utilized for Service Virtualization.",
   "main": "index.js",
   "scripts": {
