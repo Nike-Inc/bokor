@@ -2,7 +2,7 @@
 
 # Bokor
 
-[![Build Status](https://travis-ci.org/Nike-Inc/bokor.svg?branch=master)](https://travis-ci.org/Nike-Inc/bokor)
+[![npm version](https://badge.fury.io/js/bokor.svg)](https://badge.fury.io/js/bokor)
 
 Bokor is a simple, Record and Playback Mock Server written in Node.js, utilized for Service Virtualization.
 
