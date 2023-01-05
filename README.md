@@ -4,6 +4,8 @@
 
 [![npm version](https://badge.fury.io/js/bokor.svg)](https://badge.fury.io/js/bokor)
 
+Bokor project is no longer maintained and set to read-only.  Feel free to fork as needed!
+
 Bokor is a simple, Record and Playback Mock Server written in Node.js, utilized for Service Virtualization.
 
 Bokor is very similar to the many VCR-like tools out there today, but prides itself on its ease of use and speed to setup.  It can be utilized for any mocking needs, but was primarily developed for mocking back end service calls in automated UI testing.
